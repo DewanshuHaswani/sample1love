@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wedding Invitation Template</title>
+    <link rel="icon" type="image/png" href="/lovesolutions.png" />
+    <meta name="description" content="A customizable wedding invitation template powered by JSON content and local gallery images." />
+
+    
+    <!-- Open Graph / Social Media Preview -->
+    <meta property="og:title" content="Wedding Invitation Template" />
+    <meta property="og:description" content="A customizable wedding invitation template powered by JSON content and local gallery images." />
+    <meta property="og:image" content="/lovesolutions.png" />
+    <meta property="og:url" content="https://github.com/DewanshuHaswani/sample1love" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Preview -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Wedding Invitation Template" />
+    <meta name="twitter:description" content="A customizable wedding invitation template powered by JSON content and local gallery images." />
+    <meta name="twitter:image" content="/lovesolutions.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Great+Vibes&family=Marcellus&family=Noto+Sans+Devanagari:wght@400;600&family=Noto+Sans+Telugu:wght@400;600&family=Noto+Serif+Devanagari:wght@400;600&family=Noto+Serif+Telugu:wght@400;600&display=swap" rel="stylesheet">
+  </head>
+  <body>
+
+    <!-- ═══════════ FULL-SCREEN ENVELOPE (edge-to-edge, no borders) ═══════════ -->
+    <div id="envelope-wrapper" class="envelope-wrapper">
+
+      <!-- Floating particles -->
+      <div class="particles" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+
+      <!-- Envelope fills entire screen -->
+      <div id="envelope" class="envelope">
+
+        <!-- Diagonal decorative flaps -->
+        <div class="flap flap-top"></div>
+        <div class="flap flap-left"></div>
+        <div class="flap flap-right"></div>
+        <div class="flap flap-bottom"></div>
+
+        <!-- Card peeking inside -->
+        <div class="inner-card-peek">
+          <div class="peek-pattern"></div>
+        </div>
+
+        <!-- Text written ON the envelope -->
+        <div class="envelope-overlay-text">
+          <h1 data-i18n="welcome">This invitation is exclusively for you</h1>
+        </div>
+
+        <!-- Custom 3D Wax Seal with M&S Logo -->
+        <div id="wax-seal" class="wax-seal" role="button" tabindex="0" aria-label="Open invitation">
+          <img src="/wax_stamp.png" alt="Wax Seal" class="seal-base-img">
+          <img src="/seal_logo.png" alt="M & S Logo" class="seal-logo-img">
+          <!-- Extra CSS shine -->
+          <div class="seal-shine"></div>
+          <!-- Tap hint -->
+          <div class="seal-hint" data-i18n="tap">tap to open</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- THEME TOGGLE -->
+    <div class="theme-toggle-wrapper">
+      <button id="btn-theme" class="theme-btn" aria-label="Toggle theme">🌙</button>
+    </div>
+
+    <!-- LANGUAGE TOGGLE -->
+    <div class="lang-toggle-wrapper" id="lang-toggle-wrapper" aria-label="Language selector"></div>
+
+    <!-- ═══════════ WAVE ANIMATED BACKGROUND (REACT MOUNT) ═══════════ -->
+    <div id="react-wave-root" style="position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0;transition:opacity 2.5s ease 0.5s;"></div>
+
+    <!-- ═══════════ HERO BACKGROUND VIDEO (Responsive & Hidden by Default) ═══════════ -->
+    <div id="hero-video-wrapper" style="position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:0;transition:opacity 2.5s ease 0.5s;background:#000;">
+      <video id="hero-background-video" loop muted playsinline style="width:100%;height:100%;object-fit:cover;"></video>
+    </div>
+
+    <!-- ═══════════ INVITATION CONTENT ═══════════ -->
+    <div id="invitation-content" class="invitation-content">
+
+      <div class="ornamental-border top-border" aria-hidden="true">
+        <div class="corner tl"></div>
+        <div class="border-line horizontal"></div>
+        <div class="corner tr"></div>
+      </div>
+
+      <header class="invite-header">
+        <div class="ganesh-symbol" aria-label="Lord Ganesha symbol">
+          <img src="/ganesh.png" alt="Lord Ganesha" class="ganesh-img">
+        </div>
+        <p class="shubh" data-i18n="shubh">|| श्री गणेशाय नमः ||</p>
+        <div class="divider"><span></span><span class="diamond">◆</span><span></span></div>
+        <h2 data-i18n="together">Together with our family</h2>
+        <h1 class="couple-names">Groom <span class="amp weds-line" data-i18n="weds">Weds</span> Bride</h1>
+        <p class="invite-line" data-i18n="inviteLine">Request the honour of your presence at our wedding celebration</p>
+      </header>
+
+      <!-- ═══════════ FAMILY DETAILS ═══════════ -->
+      <section class="family-section text-center px-4 py-8">
+        <p class="tagline-text" data-field="tagline" style="font-family: 'Great Vibes', cursive;"></p>
+
+        <div id="react-family-root"></div>
+      </section>
+
+
+
+
+      <!-- ═══════════ PHOTO GALLERY (Zoom Parallax) ═══════════ -->
+      <section class="gallery-section text-center">
+        <h2 class="section-title" data-i18n="galleryTitle">Our Precious Moments</h2>
+        
+        <div class="zoom-parallax-container" id="zoom-parallax-container">
+          <div class="zoom-parallax-sticky" id="gallery-sticky">
+            <!-- Dynamically populated from weddingData.json via translations.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════ COUNTDOWN TIMER ═══════════ -->
+      <section class="countdown-section" aria-label="Countdown timer to wedding">
+        <div class="cd-glass-bg"></div>
+        <div class="cd-glow cd-glow-center"></div>
+        <div class="cd-glow cd-glow-tl"></div>
+        <div class="cd-glow cd-glow-br"></div>
+
+        <div class="cd-content">
+          <h2 class="cd-title" data-i18n="countdownTitle">Time to Celebration</h2>
+          <p class="cd-date" data-i18n="countdownDate">April 13, 2027</p>
+          
+          <div id="countdown" class="cd-grid">
+            <div class="cd-box">
+               <span id="cd-days" class="cd-number">00</span>
+               <div class="cd-divider"></div>
+               <p class="cd-label" data-i18n="days">Days</p>
+            </div>
+            <div class="cd-box">
+               <span id="cd-hours" class="cd-number">00</span>
+               <div class="cd-divider"></div>
+               <p class="cd-label" data-i18n="hours">Hours</p>
+            </div>
+            <div class="cd-box">
+               <span id="cd-minutes" class="cd-number">00</span>
+               <div class="cd-divider"></div>
+               <p class="cd-label" data-i18n="mins">Mins</p>
+            </div>
+            <div class="cd-box">
+               <span id="cd-seconds" class="cd-number">00</span>
+               <div class="cd-divider"></div>
+               <p class="cd-label" data-i18n="secs">Secs</p>
+            </div>
+          </div>
+
+          <a id="countdown-calendar-link" class="calendar-btn countdown-calendar-btn" href="#" target="_blank" rel="noopener noreferrer">
+            <span data-i18n="addToCalendar">Add to Calendar</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Event timeline uses data-event-id and data-event-field attributes -->
+      <section class="events-section" id="timeline-container">
+        <div class="tl-header">
+          <h2 class="section-title" data-i18n="eventsTitle">Wedding Events</h2>
+          <p class="tl-subtitle" data-i18n="eventsSub">Join us across three beautiful celebrations</p>
+        </div>
+
+        <div class="tl-wrapper" id="tl-wrapper">
+          <!-- Dynamically populated from weddingData.json via translations.js -->
+        </div>
+      </section>
+
+      <!-- ═══════════ LOCATION & VENUES (React Map) ═══════════ -->
+      <div id="react-map-root" class="w-full"></div>
+
+      <!-- RSVP Section / WhatsApp Form -->
+      <section class="rsvp-section" id="rsvp">
+        <div class="rsvp-inner rsvp-card">
+          <div class="rsvp-glow"></div>
+          <div class="rsvp-ornament rsvp-ornament-top"></div>
+
+          <h3 class="rsvp-title" data-rsvp="title">Respond with Love</h3>
+          <p class="rsvp-subtitle" data-rsvp="subtitle">Please let us know if you'll be attending!</p>
+          
+          <form id="rsvp-form" class="rsvp-form">
+            <div class="rsvp-field">
+              <label for="guest-name" class="rsvp-label" data-rsvp="nameLabel">Your Name</label>
+              <input type="text" id="guest-name" required data-rsvp="namePlaceholder" placeholder="E.g. Rahul Sharma" autocomplete="name" class="rsvp-input" />
+            </div>
+
+            <div class="rsvp-field">
+              <label for="guest-count" class="rsvp-label" data-rsvp="countLabel">Number of Guests</label>
+              <input type="number" id="guest-count" required min="1" max="10" placeholder="1" value="1" class="rsvp-input" />
+            </div>
+
+            <button type="submit" id="rsvp-submit" class="rsvp-btn">
+              <span class="rsvp-btn-inner">
+                <svg class="rsvp-wa-icon" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+                </svg>
+                <span data-rsvp="buttonText">Confirm on WhatsApp</span>
+              </span>
+            </button>
+          </form>
+          <div class="rsvp-ornament rsvp-ornament-bottom"></div>
+        </div>
+      </section>
+
+
+
+      <footer class="invite-footer">
+        <div class="divider"><span></span><span class="diamond">◆</span><span></span></div>
+        <p data-i18n="footerMsg">We can't wait to celebrate with you!</p>
+        <img src="/seal_logo.png" alt="Wedding Invitation Logo" class="footer-seal-logo">
+      </footer>
+
+      <div class="ornamental-border bottom-border" aria-hidden="true">
+        <div class="corner bl"></div>
+        <div class="border-line horizontal"></div>
+        <div class="corner br"></div>
+      </div>
+
+      <!-- ═══════════ LOVE SOLUTIONS CREDITS ═══════════ -->
+      <footer class="credits-footer">
+        <a href="https://www.instagram.com/lovesolutions.in" target="_blank" class="footer-link">
+          <p style="margin-bottom: 0.5rem; font-style: italic;" data-i18n="madeBy">Made securely by</p>
+          <img src="/lovesolutions.png" alt="LoveSolutions.in Logo" class="footer-logo">
+        </a>
+      </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="/src/main-react.tsx"></script>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>

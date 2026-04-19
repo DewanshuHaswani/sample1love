@@ -1,0 +1,37 @@
+{
+  "name": "envweb",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.2.2",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "~4.3.4",
+    "autoprefixer": "^10.4.27",
+    "postcss": "^8.5.8",
+    "puppeteer": "^24.40.0",
+    "tailwindcss": "^4.2.2",
+    "typescript": "^5.9.3",
+    "vite": "~5.4.11"
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "^1.2.4",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.38.0",
+    "lucide-react": "^1.7.0",
+    "maplibre-gl": "^5.21.1",
+    "motion": "^12.38.0",
+    "next-themes": "^0.4.6",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "simplex-noise": "^4.0.3",
+    "tailwind-merge": "^3.5.0"
+  }
+}

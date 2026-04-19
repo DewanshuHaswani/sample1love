@@ -1,0 +1,233 @@
+.family-react {
+  width: min(100%, 1080px);
+  margin: 0 auto;
+}
+
+.family-react__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.family-react__card {
+  width: 100%;
+  min-height: 220px;
+  animation: familyReveal 700ms cubic-bezier(.22,1,.36,1) both;
+}
+
+.family-react__card.glass-surface--svg,
+.family-react__card.glass-surface--fallback {
+  background: linear-gradient(
+    145deg,
+    rgba(255,255,255,0.1),
+    rgba(255,244,225,0.045) 42%,
+    rgba(255,255,255,0.03) 100%
+  );
+  border: 1px solid rgba(255,255,255,0.16);
+  box-shadow:
+    0 10px 30px rgba(17, 17, 26, 0.05),
+    0 18px 42px rgba(17, 17, 26, 0.035),
+    inset 0 1px 0 rgba(255,255,255,0.22),
+    inset 0 -1px 0 rgba(255,255,255,0.08);
+}
+
+.family-react__card:nth-child(2) {
+  animation-delay: 120ms;
+}
+
+.family-react__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 1.1rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1rem;
+  color: rgba(255,255,255,0.94);
+  text-align: center;
+}
+
+.family-react__inner::before {
+  content: "";
+  position: absolute;
+  inset: 8px auto auto 10px;
+  width: 42%;
+  height: 34%;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(255,255,255,0.22), transparent 72%);
+  filter: blur(18px);
+  pointer-events: none;
+}
+
+.family-react__inner::after {
+  content: "";
+  position: absolute;
+  inset: -18% auto auto -28%;
+  width: 55%;
+  height: 160%;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(255,255,255,0.03) 24%,
+    rgba(255,255,255,0.22) 46%,
+    rgba(255,255,255,0.05) 62%,
+    transparent 100%
+  );
+  transform: rotate(14deg) translateX(-140%);
+  filter: blur(10px);
+  pointer-events: none;
+  animation: familyReflectionSweep 5.8s ease-in-out infinite;
+}
+
+.family-react__title {
+  position: relative;
+  font-family: 'Marcellus', 'Cinzel', serif;
+  font-size: clamp(1.45rem, 4.8vw, 2rem);
+  line-height: 1.2;
+  color: #fff8e8;
+  letter-spacing: 0.04em;
+  text-align: center;
+  margin: 0;
+  text-shadow: 0 1px 10px rgba(74, 41, 10, 0.16);
+}
+
+.family-react__sections {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.85rem;
+}
+
+.family-react__section {
+  padding: 0.9rem 0;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.family-react__section:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.family-react__label {
+  display: inline-block;
+  margin-bottom: 0.55rem;
+  font-family: 'Marcellus', 'Cinzel', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(245,221,170,0.92);
+  text-align: center;
+}
+
+.family-react__names {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem 1rem;
+  justify-items: center;
+}
+
+.family-react__names--count-1 {
+  grid-template-columns: 1fr;
+}
+
+.family-react__name {
+  font-family: 'Cormorant Garamond', 'Noto Serif Telugu', serif;
+  font-size: clamp(1.08rem, 3.8vw, 1.3rem);
+  font-weight: 600;
+  line-height: 1.45;
+  color: rgba(255,255,255,0.92);
+  text-align: center;
+  text-wrap: balance;
+  letter-spacing: 0.01em;
+}
+
+body.light-theme .family-react__title {
+  color: #3f2d12;
+}
+
+body.light-theme .family-react__label {
+  color: #8b6914;
+}
+
+body.light-theme .family-react__name {
+  color: #4a3f30;
+}
+
+body.light-theme .family-react__card.glass-surface--svg,
+body.light-theme .family-react__card.glass-surface--fallback {
+  background: linear-gradient(
+    145deg,
+    rgba(255,255,255,0.56),
+    rgba(255,249,240,0.28) 42%,
+    rgba(250,237,211,0.14) 100%
+  );
+  border-color: rgba(187,145,67,0.14);
+  box-shadow:
+    0 12px 30px rgba(87,58,24,0.04),
+    inset 0 1px 0 rgba(255,255,255,0.42),
+    inset 0 -1px 0 rgba(255,255,255,0.12);
+}
+
+@media (min-width: 768px) {
+  .family-react__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.35rem;
+  }
+
+  .family-react__card {
+    min-height: 270px;
+  }
+
+  .family-react__inner {
+    padding: 1.35rem 1.3rem 1.15rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .family-react {
+    width: min(100%, calc(100vw - 1rem));
+  }
+
+  .family-react__card {
+    min-height: auto;
+  }
+
+  .family-react__inner {
+    padding: 0.95rem 0.85rem 0.85rem;
+  }
+
+  .family-react__names {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+}
+
+@keyframes familyReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes familyReflectionSweep {
+  0%, 12% {
+    opacity: 0;
+    transform: rotate(14deg) translateX(-145%);
+  }
+  26% {
+    opacity: 0.95;
+  }
+  48% {
+    opacity: 0;
+    transform: rotate(14deg) translateX(235%);
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(14deg) translateX(235%);
+  }
+}
