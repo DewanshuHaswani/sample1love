@@ -1,6 +1,9 @@
 {
   "defaultLanguage": "en",
-  "languages": ["en", "hi"],
+  "languages": [
+    "en",
+    "hi"
+  ],
   "isGroomSide": true,
   "autoScroll": {
     "enabled": false,
@@ -23,11 +26,26 @@
     "rsvp": true
   },
   "couple": {
-    "groomName": { "en": "Manav", "hi": "मानव" },
-    "brideName": { "en": "Shivani", "hi": "शिवानी" },
-    "groomFullName": { "en": "Dr. Manav Ish Sall", "hi": "डॉ. मानव इश सल" },
-    "brideFullName": { "en": "Dr. Shivani Sharma", "hi": "डॉ. शिवानी शर्मा" },
-    "coupleShort": { "en": "M & S", "hi": "म & श" },
+    "groomName": {
+      "en": "Manav",
+      "hi": "मानव"
+    },
+    "brideName": {
+      "en": "Shivani",
+      "hi": "शिवानी"
+    },
+    "groomFullName": {
+      "en": "Dr. Manav Ish Sall",
+      "hi": "डॉ. मानव इश सल"
+    },
+    "brideFullName": {
+      "en": "Dr. Shivani Sharma",
+      "hi": "डॉ. शिवानी शर्मा"
+    },
+    "coupleShort": {
+      "en": "M & S",
+      "hi": "म & श"
+    },
     "tagline": {
       "en": "With joyful hearts, we invite you to celebrate our wedding.",
       "hi": "हर्ष और प्रेम से भरे हृदय के साथ, हम आपको अपने विवाह उत्सव में आमंत्रित करते हैं।"
@@ -38,33 +56,69 @@
   },
   "family": {
     "groom": {
-      "title": { "en": "Dr. Manav Ish Sall", "hi": "डॉ. मानव इश सल" },
+      "title": {
+        "en": "Dr. Manav Ish Sall",
+        "hi": "डॉ. मानव इश सल"
+      },
       "parents": {
-        "label": { "en": "Parents", "hi": "माता-पिता" },
+        "label": {
+          "en": "Parents",
+          "hi": "माता-पिता"
+        },
         "members": [
-          { "en": "Late S. Daljeet Sall", "hi": "स्व. एस. दलजीत सल" },
-          { "en": "Mrs. Pardeep Kaur", "hi": "श्रीमती परदीप कौर" }
+          {
+            "en": "Late S. Daljeet Sall",
+            "hi": "स्व. एस. दलजीत सल"
+          },
+          {
+            "en": "Mrs. Pardeep Kaur",
+            "hi": "श्रीमती परदीप कौर"
+          }
         ]
       },
       "grandparents": {
-        "label": { "en": "Grandparents", "hi": "दादा-दादी" },
+        "label": {
+          "en": "Grandparents",
+          "hi": "दादा-दादी"
+        },
         "members": [
-          { "en": "Sh. Hari Chand Sall", "hi": "श्री हरि चंद सल" },
-          { "en": "Sdr. Surjit Kaur", "hi": "सरदारनी सुरजीत कौर" }
+          {
+            "en": "Sh. Hari Chand Sall",
+            "hi": "श्री हरि चंद सल"
+          },
+          {
+            "en": "Sdr. Surjit Kaur",
+            "hi": "सरदारनी सुरजीत कौर"
+          }
         ]
       }
     },
     "bride": {
-      "title": { "en": "Dr. Shivani Sharma", "hi": "डॉ. शिवानी शर्मा" },
+      "title": {
+        "en": "Dr. Shivani Sharma",
+        "hi": "डॉ. शिवानी शर्मा"
+      },
       "parents": {
-        "label": { "en": "Parents", "hi": "माता-पिता" },
+        "label": {
+          "en": "Parents",
+          "hi": "माता-पिता"
+        },
         "members": [
-          { "en": "Mr. Sushil Sharma", "hi": "श्री सुशील शर्मा" },
-          { "en": "Mrs. Nisha Sharma", "hi": "श्रीमती निशा शर्मा" }
+          {
+            "en": "Mr. Sushil Sharma",
+            "hi": "श्री सुशील शर्मा"
+          },
+          {
+            "en": "Mrs. Nisha Sharma",
+            "hi": "श्रीमती निशा शर्मा"
+          }
         ]
       },
       "grandparents": {
-        "label": { "en": "Grandparents", "hi": "दादा-दादी" },
+        "label": {
+          "en": "Grandparents",
+          "hi": "दादा-दादी"
+        },
         "members": []
       }
     }
@@ -73,10 +127,22 @@
     {
       "id": "wedding",
       "icon": "💍",
-      "title": { "en": "Wedding Ceremony", "hi": "विवाह समारोह" },
-      "date": { "en": "13th May 2026, Wednesday", "hi": "13 मई 2026, बुधवार" },
-      "time": { "en": "8:00 PM onwards", "hi": "रात 8:00 बजे से" },
-      "venue": { "en": "The Wedding Resort, Zirakpur", "hi": "द वेडिंग रिज़ॉर्ट, ज़ीरकपुर" },
+      "title": {
+        "en": "Wedding Ceremony",
+        "hi": "विवाह समारोह"
+      },
+      "date": {
+        "en": "13th May 2026, Wednesday",
+        "hi": "13 मई 2026, बुधवार"
+      },
+      "time": {
+        "en": "8:00 PM onwards",
+        "hi": "रात 8:00 बजे से"
+      },
+      "venue": {
+        "en": "The Wedding Resort, Zirakpur",
+        "hi": "द वेडिंग रिज़ॉर्ट, ज़ीरकपुर"
+      },
       "description": {
         "en": "Join us for an evening of celebration, blessings, and togetherness as we begin our new journey.",
         "hi": "हमारे नए जीवन की शुरुआत के इस पावन अवसर पर उत्सव, आशीर्वाद और साथ के सुंदर संध्या समारोह में आपका हार्दिक स्वागत है।"
@@ -89,10 +155,22 @@
     {
       "id": "reception",
       "icon": "🎉",
-      "title": { "en": "Reception", "hi": "रिसेप्शन" },
-      "date": { "en": "15th May 2026, Friday", "hi": "15 मई 2026, शुक्रवार" },
-      "time": { "en": "7:00 PM onwards", "hi": "शाम 7:00 बजे से" },
-      "venue": { "en": "Simran Resort, Sirhind Road, Patiala", "hi": "सिमरन रिज़ॉर्ट, सिरहिंद रोड, पटियाला" },
+      "title": {
+        "en": "Reception",
+        "hi": "रिसेप्शन"
+      },
+      "date": {
+        "en": "15th May 2026, Friday",
+        "hi": "15 मई 2026, शुक्रवार"
+      },
+      "time": {
+        "en": "7:00 PM onwards",
+        "hi": "शाम 7:00 बजे से"
+      },
+      "venue": {
+        "en": "Simran Resort, Sirhind Road, Patiala",
+        "hi": "सिमरन रिज़ॉर्ट, सिरहिंद रोड, पटियाला"
+      },
       "description": {
         "en": "Celebrate with us at the reception as we share a joyful evening with family and friends.",
         "hi": "परिवार और प्रियजनों के साथ आनंदमय संध्या साझा करने के लिए रिसेप्शन में हमारे साथ शामिल हों।"
@@ -105,16 +183,28 @@
   ],
   "mapLocations": [
     {
-      "name": { "en": "Wedding Venue", "hi": "विवाह स्थल" },
-      "location": { "en": "The Wedding Resort, Zirakpur", "hi": "द वेडिंग रिज़ॉर्ट, ज़ीरकपुर" },
+      "name": {
+        "en": "Wedding Venue",
+        "hi": "विवाह स्थल"
+      },
+      "location": {
+        "en": "The Wedding Resort, Zirakpur",
+        "hi": "द वेडिंग रिज़ॉर्ट, ज़ीरकपुर"
+      },
       "query": "The Wedding Resort, Zirakpur",
       "zoom": 15,
       "color": "#ef4444",
       "googleMapsLink": "https://maps.app.goo.gl/SAUUA3xcWuKsqA6t5?g_st=ic"
     },
     {
-      "name": { "en": "Reception Venue", "hi": "रिसेप्शन स्थल" },
-      "location": { "en": "Simran Resort, Sirhind Road, Patiala", "hi": "सिमरन रिज़ॉर्ट, सिरहिंद रोड, पटियाला" },
+      "name": {
+        "en": "Reception Venue",
+        "hi": "रिसेप्शन स्थल"
+      },
+      "location": {
+        "en": "Simran Resort, Sirhind Road, Patiala",
+        "hi": "सिमरन रिज़ॉर्ट, सिरहिंद रोड, पटियाला"
+      },
       "query": "Simran Resort, Sirhind Road, Patiala",
       "zoom": 15,
       "color": "#a855f7",
@@ -123,16 +213,34 @@
   ],
   "weddingDate": "May 13, 2026 20:00:00",
   "whatsapp": {
-    "phone": "919803804091",
-    "messageTemplate": "Hello {{groomName}} & {{brideName}}! We are delighted to attend your wedding celebrations. 🥂✨\n\nName: {{guestName}}\nNumber of Guests: {{guestCount}}\n\nCan't wait to celebrate with you!"
+    "phone": "917999433490",
+    "messageTemplate": "I want to buy the Sample #1 of lovesolutions.in, please tell me more"
   },
   "rsvp": {
-    "title": { "en": "Respond with Love", "hi": "प्रेम से उत्तर दें" },
-    "subtitle": { "en": "Please let us know if you'll be attending!", "hi": "कृपया हमें बताएं कि आप समारोह में शामिल होंगे या नहीं।" },
-    "nameLabel": { "en": "Your Name", "hi": "आपका नाम" },
-    "namePlaceholder": { "en": "E.g. Rahul Sharma", "hi": "उदाहरण: राहुल शर्मा" },
-    "countLabel": { "en": "Number of Guests", "hi": "अतिथियों की संख्या" },
-    "buttonText": { "en": "Confirm on WhatsApp", "hi": "व्हाट्सऐप पर पुष्टि करें" }
+    "title": {
+      "en": "Respond with Love",
+      "hi": "प्रेम से उत्तर दें"
+    },
+    "subtitle": {
+      "en": "Please let us know if you'll be attending!",
+      "hi": "कृपया हमें बताएं कि आप समारोह में शामिल होंगे या नहीं।"
+    },
+    "nameLabel": {
+      "en": "Your Name",
+      "hi": "आपका नाम"
+    },
+    "namePlaceholder": {
+      "en": "E.g. Rahul Sharma",
+      "hi": "उदाहरण: राहुल शर्मा"
+    },
+    "countLabel": {
+      "en": "Number of Guests",
+      "hi": "अतिथियों की संख्या"
+    },
+    "buttonText": {
+      "en": "Confirm on WhatsApp",
+      "hi": "व्हाट्सऐप पर पुष्टि करें"
+    }
   },
   "ui": {
     "en": {
@@ -200,11 +308,27 @@
     "hi": "हिं"
   },
   "gallery": [
-    { "src": "/gallery/1.jpeg", "alt": "Manav & Shivani Moments 1", "center": true },
-    { "src": "/gallery/2.jpeg", "alt": "Manav & Shivani Moments 2" },
-    { "src": "/gallery/3.jpeg", "alt": "Manav & Shivani Moments 3" },
-    { "src": "/gallery/4.jpeg", "alt": "Manav & Shivani Moments 4" },
-    { "src": "/gallery/5.jpeg", "alt": "Manav & Shivani Moments 5" }
+    {
+      "src": "/gallery/1.jpeg",
+      "alt": "Manav & Shivani Moments 1",
+      "center": true
+    },
+    {
+      "src": "/gallery/2.jpeg",
+      "alt": "Manav & Shivani Moments 2"
+    },
+    {
+      "src": "/gallery/3.jpeg",
+      "alt": "Manav & Shivani Moments 3"
+    },
+    {
+      "src": "/gallery/4.jpeg",
+      "alt": "Manav & Shivani Moments 4"
+    },
+    {
+      "src": "/gallery/5.jpeg",
+      "alt": "Manav & Shivani Moments 5"
+    }
   ],
   "meta": {
     "title": "Manav & Shivani — Wedding Invitation",
