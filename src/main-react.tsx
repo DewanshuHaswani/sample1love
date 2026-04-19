@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { FamilySection } from './components/FamilySection'
 import { MapSection } from './components/MapSection'
+import { VolumeSlider } from './components/VolumeSlider'
 
 // Removed WavesDemo to restore the video background as requested by the user.
 
@@ -19,6 +20,15 @@ if (familyRootEl) {
   ReactDOM.createRoot(familyRootEl).render(
     <React.StrictMode>
       <FamilySection />
+    </React.StrictMode>
+  )
+}
+
+const volumeRootEl = document.getElementById('react-volume-root');
+if (volumeRootEl) {
+  ReactDOM.createRoot(volumeRootEl).render(
+    <React.StrictMode>
+      <VolumeSlider />
     </React.StrictMode>
   )
 }

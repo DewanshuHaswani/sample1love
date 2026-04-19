@@ -75,12 +75,15 @@
     <!-- LANGUAGE TOGGLE -->
     <div class="lang-toggle-wrapper" id="lang-toggle-wrapper" aria-label="Language selector"></div>
 
+    <!-- MUSIC SLIDER -->
+    <div id="react-volume-root"></div>
+
     <!-- ═══════════ WAVE ANIMATED BACKGROUND (REACT MOUNT) ═══════════ -->
     <div id="react-wave-root" style="position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0;transition:opacity 2.5s ease 0.5s;"></div>
 
     <!-- ═══════════ HERO BACKGROUND VIDEO (Responsive & Hidden by Default) ═══════════ -->
     <div id="hero-video-wrapper" style="position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:0;transition:opacity 2.5s ease 0.5s;background:#000;">
-      <video id="hero-background-video" loop muted playsinline style="width:100%;height:100%;object-fit:cover;"></video>
+      <video id="hero-background-video" loop muted playsinline preload="none" poster="/lovesolutions.png" style="width:100%;height:100%;object-fit:cover;"></video>
     </div>
 
     <!-- ═══════════ INVITATION CONTENT ═══════════ -->

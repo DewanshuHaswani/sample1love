@@ -25,6 +25,25 @@ document.addEventListener('DOMContentLoaded', async () => {
   const data = getData();
   let autoScrollFrame = null;
   let autoScrollPaused = false;
+  let bgMusic = null;
+  let heroVideoReady = false;
+  let tiltFrame = null;
+  let lastTiltX = 0;
+  let lastTiltY = 0;
+
+  const musicSettings = data?.music || {};
+  let musicMuted = Boolean(musicSettings.startMuted);
+  let currentMusicVolume = Number(musicSettings.volume ?? 0.4);
+
+  function ensureHeroVideoReady() {
+    if (!heroVideo || heroVideoReady) return;
+    const isMobile = window.innerWidth <= 768;
+    heroVideo.src = isMobile ? '/mobile.mov' : '/web.mov';
+    heroVideo.load();
+    heroVideoReady = true;
+  }
+
+
 
   function createFlowerBurst(x, y, count = 14) {
     if (!data?.flowerShower?.enabled) return;
@@ -44,10 +63,10 @@ document.addEventListener('DOMContentLoaded', async () => {
       flower.textContent = flowers[i % flowers.length];
       flower.style.left = `${x + (Math.random() * 28 - 14)}px`;
       flower.style.top = `${y + (Math.random() * 28 - 14)}px`;
-      flower.style.setProperty('--drift-x', `${Math.random() * 120 - 60}px`);
-      flower.style.setProperty('--drift-y', `${80 + Math.random() * 120}px`);
-      flower.style.animationDelay = `${Math.random() * 120}ms`;
-      flower.style.fontSize = `${16 + Math.random() * 14}px`;
+      flower.style.setProperty('--drift-x', `${Math.random() * 72 - 36}px`);
+      flower.style.setProperty('--drift-y', `${64 + Math.random() * 84}px`);
+      flower.style.animationDelay = `${Math.random() * 80}ms`;
+      flower.style.fontSize = `${14 + Math.random() * 10}px`;
       layer.appendChild(flower);
       flower.addEventListener('animationend', () => flower.remove(), { once: true });
     }
@@ -89,11 +108,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   /* ───── Hero Video Initialization ───── */
   const videoWrapper = document.getElementById('hero-video-wrapper');
   const heroVideo = document.getElementById('hero-background-video');
-  if (heroVideo) {
-    const isMobile = window.innerWidth <= 768;
-    heroVideo.src = isMobile ? '/mobile.mov' : '/web.mov';
-    heroVideo.load();
-  }
 
   /* ───── Typewriter Effect ───── */
   function typeWriter(element, text, speed = 100) {
@@ -131,19 +145,22 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (wrapper && envelope) {
     wrapper.addEventListener('mousemove', (e) => {
       if (envelope.classList.contains('open') || wrapper.classList.contains('dissolve')) return;
-      
+
       const rect = wrapper.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-      
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
-      
-      const rotateX = (y - centerY) / 20; // Max 5-10 deg
-      const rotateY = (centerX - x) / 20;
-      
-      envelope.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-    });
+
+      lastTiltX = (y - centerY) / 20;
+      lastTiltY = (centerX - x) / 20;
+
+      if (tiltFrame) return;
+      tiltFrame = requestAnimationFrame(() => {
+        envelope.style.transform = `rotateX(${lastTiltX}deg) rotateY(${lastTiltY}deg)`;
+        tiltFrame = null;
+      });
+    }, { passive: true });
 
     wrapper.addEventListener('mouseleave', () => {
       if (envelope.classList.contains('open') || wrapper.classList.contains('dissolve')) return;
@@ -159,23 +176,44 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
     // 🎵 Start background music with gentle fade-in
-    const bgMusic = new Audio('/wedding_website_background.mp3');
-    bgMusic.loop = data && data.musicLoop !== undefined ? data.musicLoop : true;
-    bgMusic.volume = 0;
-    bgMusic.play().then(() => {
-      // Fade in over 2 seconds
-      const targetVolume = 0.4;
-      const fadeSteps = 40;
-      const fadeInterval = 2000 / fadeSteps;
-      let currentStep = 0;
-      const fadeIn = setInterval(() => {
-        currentStep++;
-        bgMusic.volume = Math.min(targetVolume, (currentStep / fadeSteps) * targetVolume);
-        if (currentStep >= fadeSteps) clearInterval(fadeIn);
-      }, fadeInterval);
-    }).catch(err => {
-      console.warn('Background music autoplay blocked:', err);
-    });
+    if (!bgMusic) {
+      bgMusic = new Audio('/wedding_website_background.mp3');
+      bgMusic.preload = 'none';
+      bgMusic.loop = data && data.musicLoop !== undefined ? data.musicLoop : true;
+      bgMusic.volume = 0;
+    }
+
+    if (musicSettings.showToggle !== false) {
+      window.dispatchEvent(
+        new CustomEvent('wedding-audio-ready', {
+          detail: {
+            showToggle: true,
+            volume: currentMusicVolume,
+          },
+        })
+      );
+    }
+
+    if (!musicMuted) {
+      bgMusic.play().then(() => {
+        const targetVolume = currentMusicVolume;
+        const fadeSteps = 24;
+        const fadeInterval = 1200 / fadeSteps;
+        let currentStep = 0;
+        const fadeIn = setInterval(() => {
+          currentStep++;
+          if (musicMuted) {
+            clearInterval(fadeIn);
+            bgMusic.volume = 0;
+            return;
+          }
+          bgMusic.volume = Math.min(targetVolume, (currentStep / fadeSteps) * targetVolume);
+          if (currentStep >= fadeSteps) clearInterval(fadeIn);
+        }, fadeInterval);
+      }).catch(err => {
+        console.warn('Background music autoplay blocked:', err);
+      });
+    }
 
     // 1. Break the wax seal (shatter + glow)
     seal.classList.add('breaking');
@@ -196,6 +234,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       if (waveBg) waveBg.style.opacity = '1';
       
       if (heroVideo) {
+        ensureHeroVideoReady();
         heroVideo.play().catch(err => console.warn('Hero video play blocked:', err));
         if (videoWrapper) videoWrapper.style.opacity = '1';
       }
@@ -217,6 +256,43 @@ document.addEventListener('DOMContentLoaded', async () => {
   seal.addEventListener('click', openEnvelope);
   seal.addEventListener('keydown', handleKey);
 
+  window.addEventListener('wedding-audio-set-volume', async (event) => {
+    const customEvent = event;
+    currentMusicVolume = Math.max(0, Math.min(1, Number(customEvent.detail?.volume ?? currentMusicVolume)));
+    musicMuted = currentMusicVolume <= 0.001;
+
+    if (!bgMusic) {
+      window.dispatchEvent(
+        new CustomEvent('wedding-audio-volume', {
+          detail: {
+            volume: currentMusicVolume,
+          },
+        })
+      );
+      return;
+    }
+
+    if (musicMuted) {
+      bgMusic.volume = 0;
+      bgMusic.pause();
+    } else {
+      try {
+        await bgMusic.play();
+        bgMusic.volume = currentMusicVolume;
+      } catch (err) {
+        console.warn('Background music volume change blocked:', err);
+      }
+    }
+
+    window.dispatchEvent(
+      new CustomEvent('wedding-audio-volume', {
+        detail: {
+          volume: currentMusicVolume,
+        },
+      })
+    );
+  });
+
   if (searchParams.get('open') === '1') {
     requestAnimationFrame(() => openEnvelope());
   }
@@ -224,7 +300,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (data?.flowerShower?.enabled) {
     window.addEventListener('pointerdown', (event) => {
       if (data.flowerShower.onTap) {
-        createFlowerBurst(event.clientX, event.clientY, Number(data.flowerShower.flowerCount || 18));
+        createFlowerBurst(event.clientX, event.clientY, Number(data.flowerShower.flowerCount || 10));
       }
     }, { passive: true });
 
@@ -232,9 +308,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     window.addEventListener('scroll', () => {
       if (!data.flowerShower.onScrollTrail) return;
       const now = Date.now();
-      if (now - lastTrailAt < 140) return;
+      if (now - lastTrailAt < 260) return;
       lastTrailAt = now;
-      createFlowerBurst(window.innerWidth * (0.15 + Math.random() * 0.7), -10, 8);
+      createFlowerBurst(window.innerWidth * (0.15 + Math.random() * 0.7), -10, Math.min(4, Number(data.flowerShower.scrollFlowerCount || 4)));
     }, { passive: true });
   }
 
@@ -293,26 +369,37 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   /* ───── Zoom Parallax Scroll Logic ───── */
   const parallaxContainer = document.getElementById('zoom-parallax-container');
-  const parallaxElements = document.querySelectorAll('.parallax-element');
+  let parallaxElements = [];
+  let parallaxActive = false;
 
-  if (parallaxContainer && parallaxElements.length > 0) {
+  if (parallaxContainer) {
+    parallaxElements = Array.from(document.querySelectorAll('.parallax-element'));
+
     function updateParallax() {
+      if (!parallaxActive || parallaxElements.length === 0) return;
+
       const rect = parallaxContainer.getBoundingClientRect();
       const windowH = window.innerHeight;
-      
-      // Calculate progress from 0 (container top hits viewport top) to 1 (container bottom hits viewport bottom)
-      const totalScroll = rect.height - windowH;
+      const totalScroll = Math.max(rect.height - windowH, 1);
       let progress = -rect.top / totalScroll;
       progress = Math.max(0, Math.min(1, progress));
-      
-      // Apply calculated scale back to each element
-      parallaxElements.forEach(el => {
+
+      parallaxElements.forEach((el) => {
         const targetScale = parseFloat(el.getAttribute('data-scale-end'));
         const currentScale = 1 + (targetScale - 1) * progress;
         el.style.transform = `scale(${currentScale})`;
       });
     }
 
+    const parallaxObserver = new IntersectionObserver((entries) => {
+      parallaxActive = entries.some((entry) => entry.isIntersecting);
+      if (parallaxActive) {
+        parallaxElements = Array.from(document.querySelectorAll('.parallax-element'));
+        requestAnimationFrame(updateParallax);
+      }
+    }, { threshold: 0, rootMargin: '200px 0px' });
+
+    parallaxObserver.observe(parallaxContainer);
     window.addEventListener('scroll', () => requestAnimationFrame(updateParallax), { passive: true });
     window.addEventListener('resize', () => requestAnimationFrame(updateParallax), { passive: true });
   }

@@ -15,7 +15,8 @@
     "enabled": true,
     "onTap": true,
     "onScrollTrail": true,
-    "flowerCount": 18
+    "flowerCount": 10,
+    "scrollFlowerCount": 4
   },
   "sections": {
     "family": true,
@@ -268,7 +269,9 @@
       "days": "Days",
       "hours": "Hours",
       "mins": "Mins",
-      "secs": "Secs"
+      "secs": "Secs",
+      "muteMusic": "Mute music",
+      "unmuteMusic": "Play music"
     },
     "hi": {
       "welcome": "यह निमंत्रण विशेष रूप से आपके लिए है",
@@ -295,7 +298,9 @@
       "days": "दिन",
       "hours": "घंटे",
       "mins": "मिनट",
-      "secs": "सेकंड"
+      "secs": "सेकंड",
+      "muteMusic": "संगीत बंद करें",
+      "unmuteMusic": "संगीत चलाएँ"
     }
   },
   "musicLoop": false,
@@ -333,5 +338,10 @@
   "meta": {
     "title": "Manav & Shivani — Wedding Invitation",
     "description": "You are cordially invited to celebrate the wedding of Dr. Manav Ish Sall and Dr. Shivani Sharma"
+  },
+  "music": {
+    "showToggle": true,
+    "startMuted": false,
+    "volume": 0.4
   }
 }
